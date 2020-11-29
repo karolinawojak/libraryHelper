@@ -14,6 +14,15 @@ def title_search(title):
     search_button = driver.find_element_by_id("search-zlozone")
     title_searchbar.send_keys(title)
     search_button.click()
+    get_results()
+
+def get_results():
+    results = driver.find_element_by_id("search_result")
+
+    show_links = [results.find_element_by_id("idRowPozLst" + str(i)) for i in range(1, 10)]
+
+    for el in show_links:
+        print(el.text)
 
 book_title = "Solaris"
 close_initial_popup()
