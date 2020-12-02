@@ -17,11 +17,9 @@ def title_search(title):
     get_results()
 
 def get_results():
-    results = driver.find_element_by_id("search_result")
+    rows = driver.find_elements_by_xpath("//table[@id='search_result']/tbody/tr")
 
-    show_links = [results.find_element_by_id("idRowPozLst" + str(i)) for i in range(1, 10)]
-
-    for el in show_links:
+    for el in rows:
         print(el.text)
 
 book_title = "Solaris"
