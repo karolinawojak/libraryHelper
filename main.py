@@ -1,4 +1,7 @@
 from selenium import webdriver
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 import time
 
 PATH = "F:\Program Files (x86)\chromedriver.exe"
@@ -9,9 +12,18 @@ def title_search(title):
     title_searchbar = driver.find_element_by_id("SimpleSearchForm_q")
     search_button = driver.find_element_by_xpath('//button[text()="Szukaj"]')
     title_searchbar.send_keys(title)
+    choose_search_option()
     search_button.click()
     time.sleep(5)
     #get_results()
+
+def choose_search_option():
+    option_dropdown_list = driver.find_element_by_id("indexChooserLabel")
+    option_dropdown_list.click()
+    search_option = WebDriverWait(driver, 20).until(
+        EC.element_to_be_clickable((By.XPATH, '//a[@data-id=2]')))
+    search_option.click()
+    time.sleep(5)
 
 def get_results():
     rows = driver.find_elements_by_xpath("//table[@id='search_result']/tbody/tr")
