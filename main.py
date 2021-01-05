@@ -28,19 +28,15 @@ def choose_search_option():
 def get_results():
     # ToDo: add wait
     rows = driver.find_elements_by_xpath("//article[@data-type='cataloged']")
-    for el in rows:
-        print(el)
-    print(len(rows))
-    #rows = rows[1:len(rows)]
-    #number_of_results = len(rows)
+    number_of_results = len(rows)
 
-    #for i in range(0, number_of_results-1):
-    #    link_to_result = rows[i].find_element_by_link_text("Wyświetl")
-    #    link_to_result.click()
-    #    time.sleep(1)
-    #    driver.back()
-    #    time.sleep(1)
-    #    rows = driver.find_elements_by_xpath("//table[@id='search_result']/tbody/tr")[1:len(rows)]
+    for i in range(0, number_of_results-1):
+        link_to_result = rows[i].find_element_by_xpath(".//a[@href]")
+        link_to_result.click()
+        time.sleep(1)
+        driver.back()
+        time.sleep(1)
+        rows = driver.find_elements_by_xpath("//article[@data-type='cataloged']")
 
 book_title = "Solaris"
 title_search(book_title)
