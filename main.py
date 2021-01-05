@@ -15,7 +15,7 @@ def title_search(title):
     choose_search_option()
     search_button.click()
     time.sleep(5)
-    #get_results()
+    get_results()
 
 def choose_search_option():
     option_dropdown_list = driver.find_element_by_id("indexChooserLabel")
@@ -26,17 +26,21 @@ def choose_search_option():
     time.sleep(5)
 
 def get_results():
-    rows = driver.find_elements_by_xpath("//table[@id='search_result']/tbody/tr")
-    rows = rows[1:len(rows)]
-    number_of_results = len(rows)
+    # ToDo: add wait
+    rows = driver.find_elements_by_xpath("//article[@data-type='cataloged']")
+    for el in rows:
+        print(el)
+    print(len(rows))
+    #rows = rows[1:len(rows)]
+    #number_of_results = len(rows)
 
-    for i in range(0, number_of_results-1):
-        link_to_result = rows[i].find_element_by_link_text("Wyświetl")
-        link_to_result.click()
-        time.sleep(1)
-        driver.back()
-        time.sleep(1)
-        rows = driver.find_elements_by_xpath("//table[@id='search_result']/tbody/tr")[1:len(rows)]
+    #for i in range(0, number_of_results-1):
+    #    link_to_result = rows[i].find_element_by_link_text("Wyświetl")
+    #    link_to_result.click()
+    #    time.sleep(1)
+    #    driver.back()
+    #    time.sleep(1)
+    #    rows = driver.find_elements_by_xpath("//table[@id='search_result']/tbody/tr")[1:len(rows)]
 
 book_title = "Solaris"
 title_search(book_title)
