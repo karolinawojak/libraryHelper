@@ -34,6 +34,10 @@ def get_results():
         link_to_result = rows[i].find_element_by_partial_link_text(book_title)
         link_to_result.click()
         time.sleep(1)
+
+        results = driver.find_elements_by_xpath("//div[@class='items-list item-list-borrow']")
+        print(results)
+
         driver.back()
         time.sleep(1)
         rows = driver.find_elements_by_xpath("//article[@data-type='cataloged']")
