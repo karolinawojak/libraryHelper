@@ -36,10 +36,12 @@ def get_results():
         time.sleep(1)
         results = driver.find_elements_by_xpath("//div[@class='items-list item-list-borrow']")
         print(results)
-        library_number = driver.find_element_by_partial_link_text('Filia')
-        print(library_number.text)
-        is_available = driver.find_element_by_css_selector(".ws-normal.item-status-info")
-        print(is_available.text)
+        library_numbers = driver.find_elements_by_partial_link_text('Filia')
+        for number in library_numbers:
+            print(number.text)
+        statuses = driver.find_elements_by_css_selector(".ws-normal.item-status-info")
+        for status in statuses:
+            print(status.text)
         driver.back()
         time.sleep(1)
         rows = driver.find_elements_by_xpath("//article[@data-type='cataloged']")
