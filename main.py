@@ -34,6 +34,8 @@ def get_results():
         link_to_result = rows[i].find_element_by_partial_link_text(book_title)
         link_to_result.click()
         time.sleep(1)
+        library_number = driver.find_element_by_partial_link_text('Filia')
+        print(library_number.text)
         driver.back()
         time.sleep(1)
         rows = driver.find_elements_by_xpath("//article[@data-type='cataloged']")
